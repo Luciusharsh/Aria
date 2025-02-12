@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'Dancing Script';
+    src: url('../font/Dancing_Script/static/DancingScript-Regular.ttf') format('truetype'),
+         url('../font/Dancing_Script/static/DancingScript-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes softPulse {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+body {
+    background: linear-gradient(135deg, #ff6b6b, #6a0572, #0f3443, #ff4e50, #fc913a);
+    background-size: 500% 500%;
+    animation: gradientAnimation 20s ease-in-out infinite;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+    flex-direction: column;
+    overflow: hidden;
+}
+/* Background Overlay Layers */
+body::before, body::after {
+    content: '';
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.15) 50%, rgba(0,0,0,0.1) 100%);
+    mix-blend-mode: overlay;
+    animation: gradientAnimation 30s linear infinite, softPulse 10s ease-in-out infinite;
+    z-index: -1;
+}
+
+body::before {
+    top: -40%;
+    left: -40%;
+    transform: rotate(30deg);
+    filter: blur(15px);
+}
+
+body::after {
+    bottom: -40%;
+    right: -40%;
+    transform: rotate(-30deg);
+    filter: blur(25px);
+    animation-delay: -5s;
+}
+
+/* Optional: Subtle Floating Particles */
+.particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(0) scale(1); opacity: 0.6; }
+    to { transform: translateY(-100vh) scale(1.2); opacity: 0; }
+}
+
