@@ -41,7 +41,7 @@ def homebrew_test(system_name):
                 homebrew_installer()
                 break  
             elif reponse=="no":
-                print("NO PROBLEM!!, we have other ways too make it work")
+                print("NO PROBLEM!!, we have other ways too make it work.")
                 break
             else:
                 tries-=1
