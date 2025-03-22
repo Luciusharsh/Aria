@@ -45,7 +45,7 @@ def homebrew_test(system_name):
                 break
             else:
                 tries-=1
-                print("Please choose a valid option...")
+                print("Please choose a valid option...and try again")
                 print(f"Tries left = {tries}")
 def log_record(text):
     with open("installer_py.log", "a") as file:
