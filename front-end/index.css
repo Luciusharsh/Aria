@@ -51,18 +51,38 @@ nav header{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.nav{
+#Home{
+    margin-left: 750px;
+}
+.nav {
+    position: relative;
     text-decoration: none;
-    font-family:'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: italic;
     color: rgb(242, 224, 224);
     font-size: 30px;
     padding-left: 30px;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
-#Home{
-    margin-left: 750px;
+
+.nav::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #00ff5e, #00aaff);
+    transition: width 0.3s ease;
 }
-.nav:hover{
-    color: rgb(110, 110, 223);
-    text-decoration: underline;
+
+.nav:hover {
+    transform: scale(1.1);
+    background: linear-gradient(to right, #00ff5e, #00aaff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+.nav:hover::after {
+    width: 100%;
 }
