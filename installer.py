@@ -14,7 +14,7 @@ def homebrew_installer(install_cmd):
     date_time = f"[{formatted} --->]"
     with open("installer_py.log", "a", buffering=1) as file:
         try:
-            subprocess.run(install_cmd, shell=True, capture_output=True, text=True)
+            subprocess.run(install_cmd, shell=True)
             date_time = "✅ Homebrew was installed" + date_time
             print("✅ Homebrew was installed")
             file.write(date_time+"\n")
@@ -23,30 +23,32 @@ def homebrew_installer(install_cmd):
             rich_print("[bold red][link=https://github.com/Luciusharsh]GITHUB PROFILE[/link][/bold red]")
 
 def homebrew_test(system_name):
-    print(Fore.BLUE + f"So you have {system_name}!. Lets's get started with the installation then!☺️")
-    print(Fore.BLUE + "Following upcomming steps will be easy!")
+    print(Fore.BLUE + f"So you have {system_name}! Let's get started with the installation then! ☺️")
+    print(Fore.BLUE + "Following upcoming steps will be easy!")
+    
     try:
-        homebrew = subprocess.run(["brew","--version"],check=True,capture_output=True)
-        print("✅ Homebrew")
-        install_cmd = '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" -- --unattended'
-        homebrew_installer(install_cmd)
-    except subprocess.CalledProcessError:
+        subprocess.run(["brew", "--version"], check=True, capture_output=True)
+        print("✅ Homebrew is already installed.")
+    except FileNotFoundError:
         print("❌ Homebrew not found!")
-        print(Fore.RED + "Homebrew is recomended to use this project!")
+        print(Fore.RED + "Homebrew is recommended for this project!")
         tries = 5
-        while(tries):
-            reponse = str(input(Fore.LIGHTGREEN_EX + "Install homebrew? (y/n) : "))
-            if reponse=="y":
-                print("Installing homebrew in your system!")
-                homebrew_installer()
-                break  
-            elif reponse=="no":
-                print("NO PROBLEM!!, we have other ways too make it work")
+        while tries:
+            response = input(Fore.LIGHTGREEN_EX + "Install Homebrew? (y/n): ").strip().lower()
+            if response == "y":
+                print("Installing Homebrew on your system!")
+                install_cmd = '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" -- --unattended'
+                homebrew_installer(install_cmd)
+                break
+            elif response == "n":
+                print("No problem! We have other ways to make it work.")
                 break
             else:
-                tries-=1
+                tries -= 1
                 print("Please choose a valid option...")
                 print(f"Tries left = {tries}")
+
+  
 def log_record(text):
     with open("installer_py.log", "a") as file:
         text = f"########################################{text}##########################################\n"
