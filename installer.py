@@ -9,8 +9,6 @@ init(autoreset=True)
 def main():
     compatibility_test()
 # rich_print("[bold red][link=https://github.com/Luciusharsh]GITHUB PROFILE[/link][/bold red]")
-
-  
 def log_record(text):
     with open("installer_py.log", "a") as file:
         text = f"########################################{text}##########################################\n"
